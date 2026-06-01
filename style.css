@@ -170,8 +170,8 @@
 	box-sizing: border-box;
   }
   .physics-sim-icon {
-	width: 32px;
-	height: 32px;
+	width: 40px;
+	height: 40px;
 
 	display: block;
 	object-fit: contain;
