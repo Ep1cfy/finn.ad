@@ -168,6 +168,7 @@
 	gap: 8px;
 
 	box-sizing: border-box;
+	box-shadow: 0 12px 40px rgba(0, 0, 0, 0.35);
   }
   .physics-sim-icon {
 	width: 80x;
@@ -177,6 +178,7 @@
 	object-fit: contain;
 
 	flex-shrink: 0;
+	animation: blink 1s steps(1) infinite;
   }
   @media (max-width: 700px) {
 	.now-playing {

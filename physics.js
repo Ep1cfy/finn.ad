@@ -45,9 +45,9 @@ function startPhysicsMode() {
 		  restitution: 0.6,
 		  friction: 0.2,
 		  render: {
-			fillStyle: "rgba(44, 49, 60, 0.9)",
-			strokeStyle: "#3e4451",
-			lineWidth: 1
+			fillStyle: "rgba(102, 255, 0, 1.0)",
+			strokeStyle: "#f50505",
+			lineWidth: 5
 		  }
 		}
 	  );
