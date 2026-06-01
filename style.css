@@ -152,10 +152,10 @@
 	position: fixed;   /* Removes the div from regular layout flow */
 	top: 1.25rem;               /* Pins it to the top edge */
 	left: 1.25rem;              /* Pins it to the left edge (instead of right) */		
-	width: 100px;
-	length: 1500px; 
+	width: 1500px;
+	length: 100px; 
 	background: var(--bg-dark);
-	border: 1px solid var(--border);
+	border: 10px solid var(--border);
 	border-radius: 17px
   }
   .physics-sim-icon {
