@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <link rel="stylesheet" href="style.css">
+<script src="lastfm_clientside.js"></script>
 <html>
 <head>
     <title>finn</title>
@@ -10,5 +11,18 @@
         <p>📍| ann arbor, michigan</p>
         <p>❓| various personal projects</p>
     </div>
+    <div class="now-playing" id="lastfm-card">
+            <div class="np-header">
+              <span id="np-status">last played</span>
+            </div>
+          
+            <div class="np-body">
+              <img id="np-cover" src="" alt="Album cover">
+              <div>
+                <div id="np-track">Loading...</div>
+                <div id="np-artist"></div>
+              </div>
+            </div>
+          </div>
 </body>
 </html>
