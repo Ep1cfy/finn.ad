@@ -1,0 +1,90 @@
+:root {
+	--bg: #282c34;
+	--bg-dark: #21252b;
+	--panel: #2c313c;
+	--text: #abb2bf;
+	--muted: #5c6370;
+	--blue: #61afef;
+	--green: #98c379;
+	--purple: #c678dd;
+	--red: #e06c75;
+	--yellow: #e5c07b;
+	--border: #3e4451;
+  }
+  
+  * {
+	box-sizing: border-box;
+  }
+  
+  body {
+	margin: 0;
+	min-height: 100vh;
+	background: var(--bg);
+	color: var(--text);
+	font-family: "JetBrains Mono", "Fira Code", "Cascadia Code", Consolas, monospace;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	padding: 2rem;
+  }
+  
+  main {
+	width: min(900px, 100%);
+	background: var(--panel);
+	border: 1px solid var(--border);
+	border-radius: 14px;
+	padding: 2rem;
+	box-shadow: 0 20px 60px rgba(0, 0, 0, 0.35);
+  }
+  
+  h1 {
+	color: var(--blue);
+	font-size: clamp(2rem, 6vw, 4rem);
+	margin: 0 0 1rem;
+  }
+  
+  h1::before {
+	content: "> ";
+	color: var(--green);
+  }
+  
+  p {
+	line-height: 1.7;
+	font-size: 1rem;
+  }
+  
+  a {
+	color: var(--purple);
+	text-decoration: none;
+  }
+  
+  a:hover {
+	color: var(--yellow);
+  }
+  
+  code {
+	background: var(--bg-dark);
+	color: var(--green);
+	padding: 0.2rem 0.4rem;
+	border-radius: 6px;
+  }
+  
+  .card {
+	margin-top: 1.5rem;
+	padding: 1rem;
+	background: var(--bg-dark);
+	border: 1px solid var(--border);
+	border-radius: 10px;
+  }
+  
+  .cursor::after {
+	content: "_";
+	color: var(--green);
+	animation: blink 1s steps(1) infinite;
+  }
+  
+  @keyframes blink {
+	50% {
+	  opacity: 0;
+	}
+  }
