@@ -159,7 +159,7 @@
 	border-radius: 17px
   }
   .physics-sim-icon {
-	max-width: 75%;
+	max-width: 100%;
 	max-height: 75%;
   }
   @media (max-width: 700px) {
