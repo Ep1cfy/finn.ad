@@ -150,8 +150,8 @@
   }
   .taskbar-left {
 	position: fixed;
-	top: 1.25rem;
-	left: 1.25rem;
+	top: 1rem;
+	left: 1rem;
 
 	width: 500px;
 	height: 50px;
