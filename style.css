@@ -221,6 +221,7 @@
 	justify-content: center; /* start from left */
 
 	padding-left: 10px;
+	padding-right: 10px;
 	gap: 8px;
 
 	box-sizing: border-box;

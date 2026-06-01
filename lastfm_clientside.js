@@ -24,7 +24,7 @@ async function loadLastfm() {
 		document.getElementById("np-cover").style.display = "none";
 		}
 		document.getElementById("playcount").textContent =
-		"🎵 " + track.playcount || "--";
+		"🎵 " + track.playcount + " scrobbles" || "--";
 
 	} catch (err) {
 	  console.error("Last.fm error:", err);
