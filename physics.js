@@ -44,7 +44,7 @@ function startPhysicsMode() {
   const bodies = [];
 
   const elements = document.querySelectorAll(
-    ".introduction, .now-playing, .taskbar-left, .taskbar-center"
+    ".physics-object, .now-playing, .taskbar-left, .taskbar-center"
   );
 
   elements.forEach((el) => {
