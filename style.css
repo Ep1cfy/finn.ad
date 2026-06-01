@@ -158,10 +158,10 @@
 	border: 1px solid var(--border);
 	border-radius: 10px
   }
-  /*.physics-sim-icon {
-	max-width: 35%;
-	max-height: 65%;
-  }*/
+  .physics-sim-icon {
+	max-width: 100%;
+	max-height: 100%;
+  }
   @media (max-width: 700px) {
 	.now-playing {
 	  position: static;
