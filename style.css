@@ -150,16 +150,16 @@
   }
   .taskbar-left {
 	position: fixed;   /* Removes the div from regular layout flow */
-	top: 1rem;               /* Pins it to the top edge */
-	left: 1rem;              /* Pins it to the left edge (instead of right) */		
+	top: 1.25rem;               /* Pins it to the top edge */
+	left: 1.25rem;              /* Pins it to the left edge (instead of right) */		
 	width: 200px;
-	length: 500px; 
+	length: 1500px; 
 	background: var(--bg-dark);
 	border: 1px solid var(--border);
 	border-radius: 10px
   }
   .physics-sim-icon {
-	max-width: 20%;
+	max-width: 35%;
 	height: auto
   }
   @media (max-width: 700px) {
