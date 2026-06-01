@@ -154,9 +154,8 @@
 	left: 0;              /* Pins it to the left edge (instead of right) */		
 	margin-top: 0;        /* Optional: reset your 1.5rem margin if you want it completely flush */	
 	padding: 1rem;
-	background: var(--bg-dark);
-	border: 1px solid var(--border);
-	border-radius: 10px;	  
+	width: 50px;
+	length: 50px; 
   }
   @media (max-width: 700px) {
 	.now-playing {
