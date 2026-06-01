@@ -149,23 +149,34 @@
 	margin-top: 0.25rem;
   }
   .taskbar-left {
-	position: fixed;   /* Removes the div from regular layout flow */
-	top: 1.25rem;               /* Pins it to the top edge */
-	left: 1.25rem;              /* Pins it to the left edge (instead of right) */		
+	position: fixed;
+	top: 1.25rem;
+	left: 1.25rem;
+
 	width: 500px;
-	height: 50px; 
+	height: 50px;
+
 	background: var(--bg-dark);
 	border: 1px solid var(--border);
 	border-radius: 30px;
+
 	display: flex;
-	align-items: flex-start;
-	justify-content: center;
+	align-items: center;      /* vertical center */
+	justify-content: flex-start; /* start from left */
+
+	padding-left: 10px;
+	gap: 8px;
+
+	box-sizing: border-box;
   }
   .physics-sim-icon {
-	width: 80px;
-	height: 80px;
+	width: 32px;
+	height: 32px;
+
 	display: block;
 	object-fit: contain;
+
+	flex-shrink: 0;
   }
   @media (max-width: 700px) {
 	.now-playing {
