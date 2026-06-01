@@ -14,7 +14,7 @@ export async function onRequest(context) {
 	const res = await fetch(apiURL);
 	const data = await res.json();
 	const track = data.recenttracks?.track?.[0];
-  
+	
 	return Response.json({
 	  title: track.name,
 	  artist: track.artist?.["#text"],
