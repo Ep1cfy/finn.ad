@@ -208,7 +208,7 @@
 }
   .taskbar-center {
 	position: fixed;
-	top: 16rem;
+	top: 10rem;
 	right: 1rem;
 	width: 200px;
 	height: 50px;
