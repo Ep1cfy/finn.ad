@@ -1,4 +1,3 @@
-alert("lastfm script loaded");
 async function loadLastfm() {
 	try {
 	  const response = await fetch("/lastfm");
