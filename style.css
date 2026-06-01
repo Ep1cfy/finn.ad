@@ -218,3 +218,35 @@
 	  opacity: 0;
 	}
   }
+  @keyframes bootFade {
+	from {
+		opacity: 0;
+		filter: blur(4px);
+		transform: translateY(8px) scale(0.98);
+	}
+
+	to {
+		opacity: 1;
+		filter: blur(0);
+		transform: translateY(0) scale(1);
+	}
+}
+
+  .introduction,
+  .now-playing,
+  .taskbar-left {
+	  opacity: 0;
+	  animation: bootFade 0.75s ease forwards;
+  }
+
+  .introduction {
+	  animation-delay: 0.1s;
+  }
+
+  .now-playing {
+	  animation-delay: 0.25s;
+  }
+
+  .taskbar-left {
+	  animation-delay: 0.4s;
+  }
