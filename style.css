@@ -153,14 +153,14 @@
 	top: 1.25rem;               /* Pins it to the top edge */
 	left: 1.25rem;              /* Pins it to the left edge (instead of right) */		
 	width: 500px;
-	height: 100px; 
+	height: 50px; 
 	background: var(--bg-dark);
-	border: 5px solid var(--border);
-	border-radius: 10px
+	border: 1px solid var(--border);
+	border-radius: 30px
   }
   .physics-sim-icon {
-	width: 96px;
-	height: 96px;
+	width: 80px;
+	height: 80px;
 	object-fit: contain;
   }
   @media (max-width: 700px) {
