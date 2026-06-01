@@ -24,7 +24,7 @@ export async function onRequest(context) {
 	const data = await res.json();
 	const data2 = await res2.json();
 	const track = data.recenttracks?.track?.[0];
-	const playcount = data2.playcount
+	const playcount = data2.user.playcount
 	return Response.json({
 	  title: track.name,
 	  artist: track.artist?.["#text"],
@@ -32,6 +32,6 @@ export async function onRequest(context) {
 	  image: track.image?.at(-1)?.["#text"],
 	  url: track.url,
 		nowPlaying: track["@attr"]?.nowplaying === "true",
-		playcount: data2.playcount
+		playcount: playcount
 	});
   }
