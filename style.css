@@ -149,11 +149,14 @@
 	margin-top: 0.25rem;
   }
   .physics-sim {
-	position: absolute; /* Or use 'fixed' to keep it locked while scrolling */
-  	top: 0;
-  	left: 0;    /* Aligns vertically to the top */
-	width: 100px;
-	height: 100px
+	position: absolute;   /* Removes the div from regular layout flow */
+	top: 0;               /* Pins it to the top edge */
+	left: 0;              /* Pins it to the left edge (instead of right) */		
+	margin-top: 0;        /* Optional: reset your 1.5rem margin if you want it completely flush */	
+	padding: 1rem;
+	background: var(--bg-dark);
+	border: 1px solid var(--border);
+	border-radius: 10px;	  
   }
   @media (max-width: 700px) {
 	.now-playing {
