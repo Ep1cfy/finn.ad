@@ -152,7 +152,7 @@
 	position: fixed;   /* Removes the div from regular layout flow */
 	top: 1.25rem;               /* Pins it to the top edge */
 	left: 1.25rem;              /* Pins it to the left edge (instead of right) */		
-	width: 50px;
+	width: 100px;
 	length: 50px; 
 	background: var(--bg-dark);
 	border: 10px solid var(--border);
