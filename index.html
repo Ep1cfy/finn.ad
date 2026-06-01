@@ -1,28 +1,31 @@
 <!DOCTYPE html>
-<link rel="stylesheet" href="style.css">
 <html>
 <head>
-    <title>finn</title>
+  <title>finn</title>
+  <link rel="stylesheet" href="/style.css">
 </head>
+
 <body>
-    <div class="introduction">
-        <p>👤| finn kelly</p>
-        <p>📍| ann arbor, michigan</p>
-        <p>❓| various personal projects</p>
+  <div class="introduction">
+    <p>👤 | finn kelly</p>
+    <p>📍 | ann arbor, michigan</p>
+    <p>❓ | various personal projects</p>
+  </div>
+
+  <div class="now-playing" id="lastfm-card">
+    <div class="np-header">
+      <span id="np-status">last played</span>
     </div>
-    <div class="now-playing" id="lastfm-card">
-            <div class="np-header">
-              <span id="np-status">last played</span>
-            </div>
-          
-            <div class="np-body">
-              <img id="np-cover" src="" alt="Album cover">
-              <div>
-                <div id="np-track">Loading...</div>
-                <div id="np-artist"></div>
-              </div>
-            </div>
-          </div>
-    <script src="/lastfm_clientside.js"></script>
+
+    <div class="np-body">
+      <img id="np-cover" src="" alt="Album cover">
+      <div>
+        <div id="np-track">Loading...</div>
+        <div id="np-artist"></div>
+      </div>
+    </div>
+  </div>
+
+  <script src="/lastfm_clientside.js"></script>
 </body>
 </html>
