@@ -149,8 +149,11 @@
 	margin-top: 0.25rem;
   }
   .physics-sim {
-	top: 1rem;
-	left: 1rem;
+	display: flex;
+	justify-content: flex-start; /* Aligns horizontally to the left */
+	align-items: flex-start;     /* Aligns vertically to the top */
+	width: 100px;
+	height: 100px
   }
   @media (max-width: 700px) {
 	.now-playing {
