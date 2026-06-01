@@ -359,7 +359,8 @@
   .introduction,
   .now-playing,
   .taskbar-left,
-  .taskbar-center {
+  .taskbar-center,
+  .project-timeline {
 	  opacity: 0;
 	  animation: bootFade 0.75s ease forwards;
   }
