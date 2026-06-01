@@ -206,6 +206,35 @@
 	box-shadow: 0 0 20px rgba(86, 182, 194, 0.25);
 	pointer-events: none;
 }
+  .taskbar-center {
+	position: fixed;
+	top: 1rem;
+	width: 100px;
+	height: 50px;
+
+	background: var(--bg-dark);
+	border: 1px solid var(--border);
+	border-radius: 30px;
+
+	display: flex;
+	align-items: center;      /* vertical center */
+	justify-content: flex-start; /* start from left */
+
+	padding-left: 10px;
+	gap: 8px;
+
+	box-sizing: border-box;
+	box-shadow: 0 12px 40px rgba(0, 0, 0, 0.35);
+  }
+  .playcount {
+	width: 80x;
+	height: 80px;
+
+	display: block;
+	object-fit: contain;
+
+	flex-shrink: 0;
+  }
   @media (max-width: 700px) {
 	.now-playing {
 	  position: static;
@@ -234,7 +263,8 @@
 
   .introduction,
   .now-playing,
-  .taskbar-left {
+  .taskbar-left,
+  .taskbar-center {
 	  opacity: 0;
 	  animation: bootFade 0.75s ease forwards;
   }
