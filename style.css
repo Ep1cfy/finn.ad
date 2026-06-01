@@ -158,8 +158,8 @@
 	border: 1px solid var(--border);
 	border-radius: 30px;
 	display: flex;
-	align-items: center;
-	justify-content: center;
+	align-items: left;
+	justify-content: left;
   }
   .physics-sim-icon {
 	width: 80px;
