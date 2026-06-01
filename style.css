@@ -178,8 +178,10 @@
 	object-fit: contain;
 
 	flex-shrink: 0;
-	animation: blink 1s steps(1) infinite;
+	opacity: 0.8;
+    transition: opacity 0.15s ease;
   }
+  .physics-sim-icon:hover{opacity:1}
   @media (max-width: 700px) {
 	.now-playing {
 	  position: static;
