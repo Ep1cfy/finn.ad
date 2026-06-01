@@ -24,8 +24,8 @@ async function loadLastfm() {
 		document.getElementById("np-cover").style.display = "none";
 		}
 		document.getElementById("playcount").textContent =
-		track.playcount || "--";
-		
+		"🎵 " + track.playcount || "--";
+
 	} catch (err) {
 	  console.error("Last.fm error:", err);
 	  document.getElementById("np-track").textContent = "Last.fm unavailable";
