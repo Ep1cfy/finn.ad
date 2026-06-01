@@ -96,7 +96,7 @@
   }
   
   .np-header {
-    display: flex;
+	display: flex;
     justify-content: space-between;
     align-items: center;
 
@@ -105,23 +105,23 @@
     margin-bottom: 0.7rem;
     text-transform: uppercase;
     letter-spacing: 0.08em;
-}
+  }
 
-	.lastfm-link {
-		display: flex;
-		align-items: center;
-	}
+  .lastfm-link {
+    display: flex;
+    align-items: center;
+  }
 
-	.lastfm-icon {
-		width: 16px;
-		height: 16px;
-		opacity: 0.8;
-		transition: opacity 0.15s ease;
-	}
+  .lastfm-icon {
+    width: 16px;
+    height: 16px;
+    opacity: 0.8;
+    transition: opacity 0.15s ease;
+  }
 
-	.lastfm-icon:hover {
-		opacity: 1;
-	}
+  .lastfm-icon:hover {
+    opacity: 1;
+  }
   
   .np-body {
 	display: flex;
