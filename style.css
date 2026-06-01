@@ -149,9 +149,9 @@
 	margin-top: 0.25rem;
   }
   .physics-sim {
-	display: flex;
-	justify-content: flex-start; /* Aligns horizontally to the left */
-	align-items: flex-start;     /* Aligns vertically to the top */
+	position: absolute; /* Or use 'fixed' to keep it locked while scrolling */
+  	top: 0;
+  	left: 0;    /* Aligns vertically to the top */
 	width: 100px;
 	height: 100px
   }
