@@ -281,3 +281,6 @@
   .taskbar-left {
 	  animation-delay: 0.4s;
   }
+  .taskbar-center {
+	animation-delay: 0.4s;
+}
