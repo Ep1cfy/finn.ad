@@ -156,11 +156,15 @@
 	height: 50px; 
 	background: var(--bg-dark);
 	border: 1px solid var(--border);
-	border-radius: 30px
+	border-radius: 30px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
   }
   .physics-sim-icon {
 	width: 80px;
 	height: 80px;
+	display: block;
 	object-fit: contain;
   }
   @media (max-width: 700px) {
