@@ -34,11 +34,12 @@ async function loadLastfm() {
 
 		if (playcountElement && stats) {
 			playcountElement.innerHTML = `
-				<div class="playcount-main">🎵 ${stats.playcount} scrobbles</div>
-				<div class="playcount-sub">track: ${stats.topTrack?.title || "unknown"}</div>
-				<div class="playcount-sub">artist: ${stats.topArtist?.name || "unknown"}</div>
-				<div class="playcount-sub">album: ${stats.topAlbum?.title || "unknown"}</div>
-			`;
+	<div class="playcount-label">last.fm stats</div>
+	<div class="playcount-main">🎵 ${stats.playcount} scrobbles</div>
+	<div class="playcount-sub">top track: ${stats.topTrack?.title || "unknown"}</div>
+	<div class="playcount-sub">top artist: ${stats.topArtist?.name || "unknown"}</div>
+	<div class="playcount-sub">top album: ${stats.topAlbum?.title || "unknown"}</div>
+`;
 		}
 	} catch (err) {
 		console.error("Last.fm error:", err);

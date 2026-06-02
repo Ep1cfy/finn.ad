@@ -247,69 +247,65 @@ main {
 
 .taskbar-center {
 	position: fixed;
-	top: 9rem;
+	top: 8rem;
 	right: 1rem;
 
-	width: 200px;
-	height: 50px;
+	width: 280px;
+	height: auto;
 
-	border-radius: 30px;
+	background: var(--bg-dark);
+	border: 1px solid var(--accent-white);
+	border-radius: 10px;
 
 	display: flex;
-	align-items: center;
+	align-items: stretch;
 	justify-content: center;
 
-	padding-left: 10px;
-	padding-right: 10px;
-	gap: 8px;
+	padding: 0.9rem;
+
+	box-sizing: border-box;
+	box-shadow: var(--shadow), var(--glow);
 
 	z-index: 100;
 }
 
 .playcount {
 	width: 100%;
-	height: 100%;
 
 	display: flex;
 	flex-direction: column;
-	align-items: center;
-	justify-content: center;
-	gap: 0.15rem;
-
-	padding: 0.35rem 0.65rem;
-
-	background: var(--bg-dark);
-	border: 1px solid var(--accent-white);
-	border-radius: 999px;
-
-	box-shadow: var(--shadow), var(--glow);
+	gap: 0.35rem;
 
 	color: rgba(255, 255, 255, 0.85);
 	font-family: var(--font-mono);
-	font-size: 0.68rem;
-	line-height: 1.15;
-	text-align: center;
+	font-size: 0.72rem;
+	line-height: 1.25;
 
 	overflow: hidden;
-	white-space: nowrap;
-	text-overflow: ellipsis;
 }
 
 .playcount-main {
 	color: var(--purple);
-	font-size: 0.78rem;
+	font-size: 0.8rem;
 	font-weight: 700;
+	white-space: nowrap;
 }
 
 .playcount-sub {
 	color: var(--muted);
-	font-size: 0.62rem;
-	max-width: 170px;
+	font-size: 0.68rem;
+
 	overflow: hidden;
 	text-overflow: ellipsis;
 	white-space: nowrap;
 }
 
+.playcount-label {
+	color: rgba(255, 255, 255, 0.85);
+	text-transform: uppercase;
+	letter-spacing: 0.08em;
+	font-size: 0.65rem;
+}
 /* ---------- Info row / intro / timeline ---------- */
 
 .info-row {
