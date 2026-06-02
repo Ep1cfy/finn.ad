@@ -217,34 +217,6 @@ main {
 }
 
 /* ---------- Physics active label ---------- */
-
-.physics-active-label {
-	position: fixed;
-	top: 1rem;
-	left: 50%;
-	transform: translateX(-50%);
-
-	z-index: 10000;
-
-	background: var(--bg-dark);
-	color: #56b6c2;
-
-	border: 1px solid #56b6c2;
-	border-radius: 6px;
-
-	padding: 0.35rem 0.7rem;
-
-	font-family: var(--font-mono);
-	font-size: 0.72rem;
-	text-transform: uppercase;
-	letter-spacing: 0.12em;
-
-	box-shadow: 0 0 18px rgba(86, 182, 194, 0.22);
-	pointer-events: none;
-}
-
-/* ---------- Right taskbar / playcount ---------- */
-
 .taskbar-center {
 	position: fixed;
 	top: 8rem;
@@ -258,7 +230,7 @@ main {
 	border-radius: 10px;
 
 	display: flex;
-	align-items: stretch;
+	align-items: center;
 	justify-content: center;
 
 	padding: 0.9rem;
@@ -274,7 +246,14 @@ main {
 
 	display: flex;
 	flex-direction: column;
+	align-items: flex-start;
+	justify-content: center;
 	gap: 0.35rem;
+
+	background: transparent;
+	border: none;
+	border-radius: 0;
+	box-shadow: none;
 
 	color: rgba(255, 255, 255, 0.85);
 	font-family: var(--font-mono);
@@ -282,6 +261,13 @@ main {
 	line-height: 1.25;
 
 	overflow: hidden;
+}
+
+.playcount-label {
+	color: rgba(255, 255, 255, 0.85);
+	text-transform: uppercase;
+	letter-spacing: 0.08em;
+	font-size: 0.65rem;
 }
 
 .playcount-main {
@@ -294,17 +280,11 @@ main {
 .playcount-sub {
 	color: var(--muted);
 	font-size: 0.68rem;
+	max-width: 100%;
 
 	overflow: hidden;
 	text-overflow: ellipsis;
 	white-space: nowrap;
-}
-
-.playcount-label {
-	color: rgba(255, 255, 255, 0.85);
-	text-transform: uppercase;
-	letter-spacing: 0.08em;
-	font-size: 0.65rem;
 }
 /* ---------- Info row / intro / timeline ---------- */
 
