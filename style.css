@@ -800,3 +800,53 @@ main {
 	width: 1rem;
 	text-align: center;
 }
+.local-header {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+
+	margin-bottom: 0.35rem;
+
+	color: var(--purple);
+	font-family: var(--font-mono);
+	font-size: 0.72rem;
+	font-weight: 700;
+}
+
+.unit-toggle {
+	width: 34px;
+	height: 18px;
+
+	background: rgba(255, 255, 255, 0.035);
+	border: 1px solid rgba(255, 255, 255, 0.22);
+	border-radius: 999px;
+
+	color: rgba(255, 255, 255, 0.85);
+	font-family: var(--font-mono);
+	font-size: 0.62rem;
+	font-weight: 700;
+
+	cursor: pointer;
+
+	transition:
+		border-color 0.15s ease,
+		background 0.15s ease,
+		color 0.15s ease;
+}
+
+.unit-toggle:hover {
+	background: rgba(255, 255, 255, 0.07);
+	border-color: var(--blue);
+	color: var(--blue);
+}
+
+#localinfo {
+	margin: 0;
+
+	color: rgba(255, 255, 255, 0.86);
+	font-family: var(--font-mono);
+	font-size: 0.72rem;
+	line-height: 1.55;
+
+	white-space: pre;
+}
