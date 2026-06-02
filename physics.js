@@ -17,6 +17,10 @@ function startPhysicsMode() {
 
   const engine = Engine.create();
   engine.gravity.y = 1;
+  const viewportScale = Math.max(
+    0.42,
+    Math.min(1, Math.min(window.innerWidth / 1200, window.innerHeight / 800))
+  );
 
   // Static overlay label
   const label = document.createElement("div");
@@ -49,12 +53,14 @@ function startPhysicsMode() {
 
   elements.forEach((el) => {
     const rect = el.getBoundingClientRect();
+    const bodyWidth = rect.width * viewportScale;
+    const bodyHeight = rect.height * viewportScale;
 
     const body = Bodies.rectangle(
       rect.left + rect.width / 2,
       rect.top + rect.height / 2,
-      rect.width,
-      rect.height,
+      bodyWidth,
+      bodyHeight,
       {
         restitution: 0.65,
         friction: 0.25,
@@ -62,21 +68,22 @@ function startPhysicsMode() {
         render: {
           fillStyle: "rgba(44, 49, 60, 0.92)",
           strokeStyle: "#56b6c2",
-          lineWidth: 2
+          lineWidth: Math.max(1, 2 * viewportScale)
         }
       }
     );
 
     body.plugin = {
-      gridWidth: rect.width,
-      gridHeight: rect.height
+      gridWidth: bodyWidth,
+      gridHeight: bodyHeight,
+      gridSize: Math.max(8, 14 * viewportScale)
     };
 
     el.style.visibility = "hidden";
     bodies.push(body);
   });
 
-  const thickness = 80;
+  const thickness = 80 * viewportScale;
 
   const ground = Bodies.rectangle(
     window.innerWidth / 2,
@@ -137,7 +144,7 @@ function startPhysicsMode() {
     bodies.forEach((body) => {
       const width = body.plugin.gridWidth;
       const height = body.plugin.gridHeight;
-      const gridSize = 14;
+      const gridSize = body.plugin.gridSize;
 
       ctx.save();
 
