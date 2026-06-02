@@ -23,14 +23,22 @@
 }
 #bg-canvas {
 	position: fixed;
+	inset: 0;
 
 	width: 100vw;
 	height: 100vh;
 
-	z-index: -1;
+	z-index: 0;
 	pointer-events: none;
 
 	background: var(--bg);
+}
+.taskbar-left,
+.taskbar-center,
+.now-playing,
+.info-row,
+.ipbox {
+	z-index: 10;
 }
 body {
 	margin: 0;
@@ -43,7 +51,8 @@ body {
 	justify-content: center;
 	padding: 2rem;
 	position: relative;
-	overflow: hidden
+	overflow: hidden;
+	background: var(--bg);
 }
 
 /* ---------- Global text ---------- */

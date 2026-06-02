@@ -1,96 +1,39 @@
+console.log("background script loaded");
+
 const canvas = document.getElementById("bg-canvas");
 const ctx = canvas.getContext("2d");
 
-let width;
-let height;
-let particles = [];
-
-const seed = Math.random() * 10000;
-
 function resizeCanvas() {
-	width = canvas.width = window.innerWidth;
-	height = canvas.height = window.innerHeight;
+	canvas.width = window.innerWidth;
+	canvas.height = window.innerHeight;
 }
 
-function makeParticles() {
-	particles = [];
+resizeCanvas();
+window.addEventListener("resize", resizeCanvas);
 
-	const count = Math.floor((width * height) / 18000);
+let t = 0;
 
-	for (let i = 0; i < count; i++) {
-		particles.push({
-			x: Math.random() * width,
-			y: Math.random() * height,
-			age: Math.random() * 200,
-			speed: 0.25 + Math.random() * 0.45,
-			offset: Math.random() * 1000,
-		});
-	}
-}
+function draw() {
+	t += 0.01;
 
-function field(x, y, t, offset) {
-	const nx = x / width - 0.5;
-	const ny = y / height - 0.5;
+	ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-	const dist = Math.sqrt(nx * nx + ny * ny);
-	const angleToCenter = Math.atan2(ny, nx);
+	for (let i = 0; i < 80; i++) {
+		const x =
+			canvas.width / 2 +
+			Math.cos(t + i * 0.35) * (80 + i * 6);
 
-	const swirl =
-		angleToCenter +
-		Math.sin(dist * 12 + t * 0.0003 + seed + offset) * 1.2 +
-		Math.cos(nx * 8 + ny * 6 + seed) * 0.7;
-
-	return swirl + Math.PI / 2;
-}
-
-function draw(time) {
-	ctx.fillStyle = "rgba(31, 35, 41, 0.08)";
-	ctx.fillRect(0, 0, width, height);
-
-	for (const p of particles) {
-		const angle = field(p.x, p.y, time, p.offset);
-
-		const oldX = p.x;
-		const oldY = p.y;
-
-		p.x += Math.cos(angle) * p.speed;
-		p.y += Math.sin(angle) * p.speed;
-
-		p.age++;
-
-		const alpha = Math.max(0, 0.14 - p.age / 1800);
+		const y =
+			canvas.height / 2 +
+			Math.sin(t + i * 0.35) * (80 + i * 3);
 
 		ctx.beginPath();
-		ctx.moveTo(oldX, oldY);
-		ctx.lineTo(p.x, p.y);
-
-		ctx.strokeStyle = `rgba(97, 175, 239, ${alpha})`;
-		ctx.lineWidth = 1;
-		ctx.stroke();
-
-		if (
-			p.x < -20 ||
-			p.x > width + 20 ||
-			p.y < -20 ||
-			p.y > height + 20 ||
-			p.age > 600
-		) {
-			p.x = Math.random() * width;
-			p.y = Math.random() * height;
-			p.age = 0;
-			p.speed = 0.25 + Math.random() * 0.45;
-			p.offset = Math.random() * 1000;
-		}
+		ctx.arc(x, y, 2, 0, Math.PI * 2);
+		ctx.fillStyle = "rgba(97, 175, 239, 0.35)";
+		ctx.fill();
 	}
 
 	requestAnimationFrame(draw);
 }
 
-resizeCanvas();
-makeParticles();
-requestAnimationFrame(draw);
-
-window.addEventListener("resize", () => {
-	resizeCanvas();
-	makeParticles();
-});
+draw();
