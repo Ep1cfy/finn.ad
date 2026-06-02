@@ -1,3 +1,21 @@
+function updateMarquee() {
+	const trackEl = document.getElementById("np-track");
+	const marqueeEl = trackEl?.parentElement;
+
+	if (!trackEl || !marqueeEl) return;
+
+	trackEl.classList.remove("scrolling");
+	trackEl.style.removeProperty("--scroll-distance");
+
+	requestAnimationFrame(() => {
+		const overflow = trackEl.scrollWidth - marqueeEl.clientWidth;
+
+		if (overflow > 4) {
+			trackEl.style.setProperty("--scroll-distance", `-${overflow}px`);
+			trackEl.classList.add("scrolling");
+		}
+	});
+}
 async function loadLastfm() {
 	try {
 		const response = await fetch("/lastfm");
@@ -15,6 +33,7 @@ async function loadLastfm() {
 		if (track) {
 			document.getElementById("np-track").textContent =
 				track.title || "Unknown Track";
+			updateMarquee();
 
 			document.getElementById("np-artist").textContent =
 				track.artist || "Unknown Artist";
@@ -90,6 +109,7 @@ async function loadLastfm() {
 		}
 	}
 }
+
 
 loadLastfm();
 setInterval(loadLastfm, 30000);

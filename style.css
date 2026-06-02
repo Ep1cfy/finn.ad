@@ -237,6 +237,60 @@ main {
 	display: flex;
 	gap: 0.8rem;
 	align-items: center;
+	min-width: 0;
+}
+
+.np-text {
+	min-width: 0;
+	flex: 1;
+}
+
+.np-marquee {
+	width: 100%;
+	overflow: hidden;
+	white-space: nowrap;
+}
+
+#np-track {
+	color: var(--blue);
+	font-weight: 700;
+	font-size: 0.95rem;
+
+	display: inline-block;
+	white-space: nowrap;
+	will-change: transform;
+}
+
+#np-track.scrolling {
+	animation: npMarquee 8s linear infinite;
+}
+
+@keyframes npMarquee {
+	0% {
+		transform: translateX(0);
+	}
+
+	18% {
+		transform: translateX(0);
+	}
+
+	75% {
+		transform: translateX(var(--scroll-distance));
+	}
+
+	100% {
+		transform: translateX(0);
+	}
+}
+
+#np-artist {
+	color: var(--muted);
+	font-size: 0.8rem;
+	margin-top: 0.25rem;
+
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
 }
 
 #np-cover {
