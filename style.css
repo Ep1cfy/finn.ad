@@ -1,20 +1,20 @@
 :root {
-	--bg: #282c34;
-	--bg-dark: #21252b;
-	--panel: #2c313c;
+	--bg: #1f2329;
+	--bg-dark: #181b20;
+	--panel: #20242b;
 	--text: #abb2bf;
-	--muted: #5c6370;
+	--muted: #6b7280;
 	--blue: #61afef;
 	--green: #98c379;
 	--purple: #c678dd;
 	--red: #e06c75;
 	--yellow: #e5c07b;
-	--border: #3e4451;
+	--border: #3a3f4b;
 
-	--accent-white: rgba(255, 255, 255, 0.65);
+	--accent-white: rgba(255, 255, 255, 0.68);
 	--accent-soft: rgba(255, 255, 255, 0.08);
-	--shadow: 0 12px 40px rgba(0, 0, 0, 0.35);
-	--glow: 0 0 14px rgba(255, 255, 255, 0.08);
+	--shadow: 0 14px 44px rgba(0, 0, 0, 0.42);
+	--glow: 0 0 14px rgba(255, 255, 255, 0.07);
 	--font-mono: "JetBrains Mono", "Fira Code", "Cascadia Code", Consolas, monospace;
 }
 
@@ -78,10 +78,34 @@ main,
 .taskbar-left,
 .taskbar-center,
 .ipbox {
+	position: fixed;
+	top: 1rem;
+	left: 50%;
+	transform: translateX(-50%);
+
+	width: fit-content;
+	min-width: 360px;
+	height: auto;
+
 	background: var(--bg-dark);
 	border: 1px solid var(--accent-white);
+	border-radius: 6px;
+
+	display: flex;
+	align-items: center;
+	justify-content: center;
+
+	padding: 0.25rem 0.65rem;
+
+	box-sizing: border-box;
 	box-shadow: var(--shadow), var(--glow);
+
+	color: var(--text);
+	font-size: 0.72rem;
 	font-family: var(--font-mono);
+	letter-spacing: 0.04em;
+
+	z-index: 1000;
 }
 
 /* ---------- Main/card ---------- */
@@ -289,6 +313,7 @@ main {
 
 .introduction {
 	min-width: 260px;
+	height: 150px;
 
 	background: var(--bg-dark);
 	border: 1px solid var(--accent-white);
@@ -297,6 +322,10 @@ main {
 	padding: 0.75rem 1rem;
 
 	box-shadow: var(--shadow), var(--glow);
+
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
 }
 
 .introduction p {
@@ -305,15 +334,9 @@ main {
 	font-size: 0.85rem;
 }
 
-.vertical-divider {
-	width: 1px;
-	height: 115px;
-	background: rgba(255, 255, 255, 0.65);
-	box-shadow: 0 0 12px rgba(255, 255, 255, 0.12);
-}
-
 .project-timeline {
 	width: 650px;
+	height: 150px;
 
 	background: var(--bg-dark);
 	border: 1px solid var(--accent-white);
@@ -322,6 +345,13 @@ main {
 	padding: 0.9rem 1rem;
 
 	box-shadow: var(--shadow), var(--glow);
+}
+
+.vertical-divider {
+	width: 1px;
+	height: 115px;
+	background: rgba(255, 255, 255, 0.65);
+	box-shadow: 0 0 12px rgba(255, 255, 255, 0.12);
 }
 
 .timeline-title {
@@ -460,8 +490,13 @@ main {
 	}
 
 	.info-row {
-		flex-direction: column;
-		align-items: stretch;
+		position: fixed;
+		left: 3rem;
+		bottom: 2.5rem;
+	
+		display: flex;
+		align-items: center;
+		gap: 2rem;
 	}
 
 	.vertical-divider {
