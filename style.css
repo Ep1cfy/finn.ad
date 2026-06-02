@@ -700,7 +700,8 @@ main {
 .taskbar-left,
 .taskbar-center,
 .project-timeline,
-.ipbox {
+.ipbox,
+.socials-card {
 	opacity: 0;
 	animation: bootFade 0.75s ease forwards;
 }
@@ -727,4 +728,75 @@ main {
 
 .ipbox {
 	animation-delay: 0.15s;
+}
+.socials-card {
+	position: fixed;
+	top: 28rem;
+	right: 1rem;
+
+	width: 280px;
+	height: auto;
+
+	background: var(--bg-dark);
+	border: 1px solid var(--accent-white);
+	border-radius: 10px;
+
+	padding: 0.9rem;
+
+	box-sizing: border-box;
+	box-shadow: var(--shadow), var(--glow);
+
+	z-index: 10;
+}
+
+.socials-title {
+	color: rgba(255, 255, 255, 0.85);
+	text-transform: uppercase;
+	letter-spacing: 0.08em;
+	font-size: 0.65rem;
+	font-weight: 700;
+
+	margin-bottom: 0.65rem;
+}
+
+.socials-list {
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	gap: 0.45rem;
+}
+
+.socials-list a {
+	display: flex;
+	align-items: center;
+	gap: 0.4rem;
+
+	padding: 0.45rem 0.55rem;
+
+	background: rgba(255, 255, 255, 0.035);
+	border: 1px solid rgba(255, 255, 255, 0.12);
+	border-radius: 6px;
+
+	color: var(--text);
+	font-size: 0.72rem;
+	text-decoration: none;
+
+	transition:
+		border-color 0.15s ease,
+		background 0.15s ease,
+		color 0.15s ease,
+		transform 0.15s ease;
+}
+
+.socials-list a:hover {
+	background: rgba(255, 255, 255, 0.06);
+	border-color: var(--blue);
+	color: var(--blue);
+	transform: translateY(-1px);
+}
+
+.social-icon {
+	color: var(--purple);
+	font-size: 0.8rem;
+	width: 1rem;
+	text-align: center;
 }
