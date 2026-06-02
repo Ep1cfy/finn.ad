@@ -267,12 +267,47 @@ main {
 }
 
 .playcount {
-	width: 80px;
-	height: 80px;
+	width: 100%;
+	height: 100%;
 
-	display: block;
-	object-fit: contain;
-	flex-shrink: 0;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	gap: 0.15rem;
+
+	padding: 0.35rem 0.65rem;
+
+	background: var(--bg-dark);
+	border: 1px solid var(--accent-white);
+	border-radius: 999px;
+
+	box-shadow: var(--shadow), var(--glow);
+
+	color: rgba(255, 255, 255, 0.85);
+	font-family: var(--font-mono);
+	font-size: 0.68rem;
+	line-height: 1.15;
+	text-align: center;
+
+	overflow: hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+}
+
+.playcount-main {
+	color: var(--purple);
+	font-size: 0.78rem;
+	font-weight: 700;
+}
+
+.playcount-sub {
+	color: var(--muted);
+	font-size: 0.62rem;
+	max-width: 170px;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
 }
 
 /* ---------- Info row / intro / timeline ---------- */
