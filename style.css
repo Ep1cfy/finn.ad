@@ -894,6 +894,38 @@ main {
 	color: var(--blue);
 }
 
+.local-card {
+	position: fixed;
+	right: 1rem;
+	bottom: 1rem;
+
+	width: 280px;
+	height: auto;
+
+	background: var(--bg-dark);
+	border: 1px solid var(--accent-white);
+	border-radius: 10px;
+
+	padding: 0.9rem;
+
+	box-sizing: border-box;
+	box-shadow: var(--shadow), var(--glow);
+
+	z-index: 10;
+}
+.local-header {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+
+	margin-bottom: 0.45rem;
+
+	color: var(--purple);
+	font-family: var(--font-mono);
+	font-size: 0.72rem;
+	font-weight: 700;
+}
+
 #localinfo {
 	margin: 0;
 
