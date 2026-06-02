@@ -1,20 +1,20 @@
 :root {
-	--bg: #282c34;
-	--bg-dark: #21252b;
-	--panel: #2c313c;
+	--bg: #1f2329;
+	--bg-dark: #181b20;
+	--panel: #20242b;
 	--text: #abb2bf;
-	--muted: #5c6370;
+	--muted: #6b7280;
 	--blue: #61afef;
 	--green: #98c379;
 	--purple: #c678dd;
 	--red: #e06c75;
 	--yellow: #e5c07b;
-	--border: #3e4451;
+	--border: #3a3f4b;
 
-	--accent-white: rgba(255, 255, 255, 0.65);
+	--accent-white: rgba(255, 255, 255, 0.68);
 	--accent-soft: rgba(255, 255, 255, 0.08);
-	--shadow: 0 12px 40px rgba(0, 0, 0, 0.35);
-	--glow: 0 0 14px rgba(255, 255, 255, 0.08);
+	--shadow: 0 14px 44px rgba(0, 0, 0, 0.42);
+	--glow: 0 0 14px rgba(255, 255, 255, 0.07);
 	--font-mono: "JetBrains Mono", "Fira Code", "Cascadia Code", Consolas, monospace;
 }
 
@@ -406,27 +406,33 @@ main {
 }
 
 /* ---------- IP box ---------- */
-
 .ipbox {
 	position: fixed;
 	top: 1rem;
-	left: 50%;
-	transform: translateX(-50%);
+	left: 0;
+	right: 0;
 
-	width: fit-content;
-	min-width: 120px;
-	height: auto;
+	width: max-content;
+	min-width: 360px;
+	max-width: calc(100vw - 2rem);
+	margin-inline: auto;
 
+	background: var(--bg-dark);
+	border: 1px solid var(--accent-white);
 	border-radius: 6px;
 
 	display: flex;
 	align-items: center;
 	justify-content: center;
 
-	padding: 0.25rem 0.6rem;
+	padding: 0.25rem 0.65rem;
+
+	box-sizing: border-box;
+	box-shadow: var(--shadow), var(--glow);
 
 	color: var(--text);
 	font-size: 0.72rem;
+	font-family: var(--font-mono);
 	letter-spacing: 0.04em;
 
 	z-index: 1000;
@@ -434,6 +440,8 @@ main {
 
 .ip {
 	display: block;
+	width: 100%;
+	text-align: center;
 	color: rgba(255, 255, 255, 0.85);
 	font-size: 0.72rem;
 	line-height: 1;
