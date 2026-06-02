@@ -10,145 +10,176 @@
 	--red: #e06c75;
 	--yellow: #e5c07b;
 	--border: #3e4451;
-  }
-  
-  * {
+
+	--accent-white: rgba(255, 255, 255, 0.65);
+	--accent-soft: rgba(255, 255, 255, 0.08);
+	--shadow: 0 12px 40px rgba(0, 0, 0, 0.35);
+	--glow: 0 0 14px rgba(255, 255, 255, 0.08);
+	--font-mono: "JetBrains Mono", "Fira Code", "Cascadia Code", Consolas, monospace;
+}
+
+* {
 	box-sizing: border-box;
-  }
-  
-  body {
+}
+
+body {
 	margin: 0;
 	min-height: 100vh;
 	background: var(--bg);
 	color: var(--text);
-	font-family: "JetBrains Mono", "Fira Code", "Cascadia Code", Consolas, monospace;
+	font-family: var(--font-mono);
 	display: flex;
 	align-items: center;
 	justify-content: center;
 	padding: 2rem;
-  }
-  
-  main {
-	width: min(900px, 100%);
-	background: var(--panel);
-	border: 1px solid var(--border);
-	border-radius: 14px;
-	padding: 2rem;
-	box-shadow: 0 20px 60px rgba(0, 0, 0, 0.35);
-  }
-  
-  h1 {
+}
+
+/* ---------- Global text ---------- */
+
+h1 {
 	color: var(--blue);
 	font-size: clamp(2rem, 6vw, 4rem);
 	margin: 0 0 1rem;
-  }
-  
-  h1::before {
+}
+
+h1::before {
 	content: "> ";
 	color: var(--green);
-  }
-  
-  p {
+}
+
+p {
 	line-height: 1.7;
 	font-size: 1rem;
-  }
-  
-  a {
+}
+
+a {
 	color: var(--purple);
 	text-decoration: none;
-  }
-  
-  a:hover {
+	transition: color 0.15s ease, opacity 0.15s ease;
+}
+
+a:hover {
 	color: var(--yellow);
-  }
-  
-  code {
+}
+
+code {
 	background: var(--bg-dark);
 	color: var(--green);
 	padding: 0.2rem 0.4rem;
+	border: 1px solid var(--border);
 	border-radius: 6px;
-  }
-  
-  .card {
+}
+
+/* ---------- Shared panel style ---------- */
+
+main,
+.card,
+.now-playing,
+.taskbar-left,
+.taskbar-center,
+.ipbox {
+	background: var(--bg-dark);
+	border: 1px solid var(--accent-white);
+	box-shadow: var(--shadow), var(--glow);
+	font-family: var(--font-mono);
+}
+
+/* ---------- Main/card ---------- */
+
+main {
+	width: min(900px, 100%);
+	border-radius: 14px;
+	padding: 2rem;
+}
+
+.card {
 	margin-top: 1.5rem;
 	padding: 1rem;
-	background: var(--bg-dark);
-	border: 1px solid var(--border);
 	border-radius: 10px;
-  }
-  
-  .cursor::after {
+}
+
+.cursor::after {
 	content: "_";
 	color: var(--green);
 	animation: blink 1s steps(1) infinite;
-  }
-  .now-playing {
+}
+
+/* ---------- Now playing card ---------- */
+
+.now-playing {
 	position: fixed;
 	top: 1rem;
 	right: 1rem;
 	width: 280px;
-	background: var(--panel);
-	border: 1px solid var(--border);
-	border-radius: 12px;
+
+	border-radius: 10px;
 	padding: 0.9rem;
-	box-shadow: 0 12px 40px rgba(0, 0, 0, 0.35);
+
 	z-index: 100;
-  }
-  
-  .np-header {
+}
+
+.np-header {
 	display: flex;
-    justify-content: space-between;
-    align-items: center;
+	justify-content: space-between;
+	align-items: center;
 
-    color: var(--green);
-    font-size: 0.75rem;
-    margin-bottom: 0.7rem;
-    text-transform: uppercase;
-    letter-spacing: 0.08em;
-  }
+	color: rgba(255, 255, 255, 0.85);
+	font-size: 0.72rem;
+	margin-bottom: 0.7rem;
 
-  .lastfm-link {
-    display: flex;
-    align-items: center;
-  }
+	text-transform: uppercase;
+	letter-spacing: 0.08em;
+}
 
-  .lastfm-icon {
-    width: 16px;
-    height: 16px;
-    opacity: 0.8;
-    transition: opacity 0.15s ease;
-  }
+.lastfm-link {
+	display: flex;
+	align-items: center;
+}
 
-  .lastfm-icon:hover {
-    opacity: 1;
-  }
+.lastfm-icon {
+	width: 16px;
+	height: 16px;
 
-  .np-body {
+	opacity: 0.75;
+	transition: opacity 0.15s ease, transform 0.15s ease;
+}
+
+.lastfm-icon:hover {
+	opacity: 1;
+	transform: scale(1.08);
+}
+
+.np-body {
 	display: flex;
 	gap: 0.8rem;
 	align-items: center;
-  }
-  
-  #np-cover {
+}
+
+#np-cover {
 	width: 56px;
 	height: 56px;
 	object-fit: cover;
+
+	background: var(--panel);
+	border: 1px solid var(--border);
 	border-radius: 8px;
-	background: var(--bg-dark);
-  }
-  
-  #np-track {
+}
+
+#np-track {
 	color: var(--blue);
 	font-weight: 700;
 	font-size: 0.95rem;
-  }
-  
-  #np-artist {
+}
+
+#np-artist {
 	color: var(--muted);
 	font-size: 0.8rem;
 	margin-top: 0.25rem;
-  }
-  .taskbar-left {
+}
+
+/* ---------- Top left taskbar ---------- */
+
+.taskbar-left {
 	position: fixed;
 	top: 1rem;
 	left: 1rem;
@@ -156,33 +187,38 @@
 	width: 500px;
 	height: 50px;
 
-	background: var(--bg-dark);
-	border: 1px solid var(--border);
 	border-radius: 30px;
 
 	display: flex;
-	align-items: center;      /* vertical center */
-	justify-content: flex-start; /* start from left */
+	align-items: center;
+	justify-content: flex-start;
 
 	padding-left: 10px;
 	gap: 8px;
 
-	box-sizing: border-box;
-	box-shadow: 0 12px 40px rgba(0, 0, 0, 0.35);
-  }
-  .physics-sim-icon {
-	width: 80x;
+	z-index: 100;
+}
+
+.physics-sim-icon {
+	width: 80px;
 	height: 80px;
 
 	display: block;
 	object-fit: contain;
-
 	flex-shrink: 0;
+
 	opacity: 0.8;
-    transition: opacity 0.15s ease;
-  }
-  .physics-sim-icon:hover{opacity:1}
-  .physics-active-label {
+	transition: opacity 0.15s ease, transform 0.15s ease;
+}
+
+.physics-sim-icon:hover {
+	opacity: 1;
+	transform: scale(1.04);
+}
+
+/* ---------- Physics active label ---------- */
+
+.physics-active-label {
 	position: fixed;
 	top: 1rem;
 	left: 50%;
@@ -194,50 +230,54 @@
 	color: #56b6c2;
 
 	border: 1px solid #56b6c2;
-	border-radius: 999px;
+	border-radius: 6px;
 
-	padding: 0.45rem 0.9rem;
+	padding: 0.35rem 0.7rem;
 
-	font-family: "JetBrains Mono", "Fira Code", "Cascadia Code", Consolas, monospace;
-	font-size: 0.8rem;
+	font-family: var(--font-mono);
+	font-size: 0.72rem;
 	text-transform: uppercase;
 	letter-spacing: 0.12em;
 
-	box-shadow: 0 0 20px rgba(86, 182, 194, 0.25);
+	box-shadow: 0 0 18px rgba(86, 182, 194, 0.22);
 	pointer-events: none;
 }
-  .taskbar-center {
+
+/* ---------- Right taskbar / playcount ---------- */
+
+.taskbar-center {
 	position: fixed;
 	top: 9rem;
 	right: 1rem;
+
 	width: 200px;
 	height: 50px;
 
-	background: var(--bg-dark);
-	border: 1px solid var(--border);
 	border-radius: 30px;
 
 	display: flex;
-	align-items: center;      /* vertical center */
-	justify-content: center; /* start from left */
+	align-items: center;
+	justify-content: center;
 
 	padding-left: 10px;
 	padding-right: 10px;
 	gap: 8px;
 
-	box-sizing: border-box;
-	box-shadow: 0 12px 40px rgba(0, 0, 0, 0.35);
-  }
-  .playcount {
-	width: 80x;
+	z-index: 100;
+}
+
+.playcount {
+	width: 80px;
 	height: 80px;
 
 	display: block;
 	object-fit: contain;
-
 	flex-shrink: 0;
-  }
-  .info-row {
+}
+
+/* ---------- Info row / intro / timeline ---------- */
+
+.info-row {
 	position: fixed;
 	left: 3rem;
 	bottom: 2.5rem;
@@ -247,24 +287,50 @@
 	gap: 2rem;
 }
 
-  .introduction {
-	  min-width: 260px;
-  }
+.introduction {
+	min-width: 260px;
 
-  .vertical-divider {
-	  width: 1px;
-	  height: 115px;
-	  background: rgba(255, 255, 255, 0.7);
-  }
+	background: var(--bg-dark);
+	border: 1px solid var(--accent-white);
+	border-radius: 10px;
 
-  .project-timeline {
+	padding: 0.75rem 1rem;
+
+	box-shadow: var(--shadow), var(--glow);
+}
+
+.introduction p {
+	margin: 0.25rem 0;
+	color: rgba(255, 255, 255, 0.85);
+	font-size: 0.85rem;
+}
+
+.vertical-divider {
+	width: 1px;
+	height: 115px;
+	background: rgba(255, 255, 255, 0.65);
+	box-shadow: 0 0 12px rgba(255, 255, 255, 0.12);
+}
+
+.project-timeline {
 	width: 650px;
+
+	background: var(--bg-dark);
+	border: 1px solid var(--accent-white);
+	border-radius: 10px;
+
+	padding: 0.9rem 1rem;
+
+	box-shadow: var(--shadow), var(--glow);
 }
 
 .timeline-title {
-	color: var(--text);
-	font-size: 0.85rem;
+	color: rgba(255, 255, 255, 0.85);
+	font-size: 0.72rem;
 	margin-bottom: 0.9rem;
+
+	text-transform: uppercase;
+	letter-spacing: 0.12em;
 }
 
 .timeline-track {
@@ -285,8 +351,7 @@
 	right: 0;
 
 	height: 1px;
-	background: var(--muted);
-	opacity: 0.65;
+	background: rgba(255, 255, 255, 0.35);
 	z-index: 0;
 }
 
@@ -301,7 +366,6 @@
 
 	text-align: center;
 
-	/* important: force all timeline items to same vertical position */
 	margin: 0;
 	top: 0;
 	transform: none;
@@ -311,25 +375,37 @@
 	width: 10px;
 	height: 10px;
 
-	background: var(--purple);
-	border: 2px solid var(--bg);
+	background: var(--bg-dark);
+	border: 1px solid var(--accent-white);
 	border-radius: 50%;
 
-	box-shadow: 0 0 12px rgba(198, 120, 221, 0.7);
+	box-shadow: 0 0 12px rgba(255, 255, 255, 0.16);
 }
 
 .timeline-date {
-	color: var(--purple);
+	color: rgba(255, 255, 255, 0.9);
 	font-size: 0.78rem;
 	font-weight: 700;
 }
 
 .timeline-name {
-	color: var(--text);
+	color: var(--muted);
 	font-size: 0.72rem;
 	line-height: 1.3;
 	max-width: 120px;
 }
+
+.timeline-item:hover .timeline-dot {
+	background: var(--blue);
+	border-color: var(--blue);
+	box-shadow: 0 0 14px rgba(97, 175, 239, 0.5);
+}
+
+.timeline-item:hover .timeline-name {
+	color: var(--text);
+}
+
+/* ---------- IP box ---------- */
 
 .ipbox {
 	position: fixed;
@@ -341,8 +417,6 @@
 	min-width: 120px;
 	height: auto;
 
-	background: var(--bg-dark);
-	border: 1px solid rgba(255, 255, 255, 0.65);
 	border-radius: 6px;
 
 	display: flex;
@@ -351,12 +425,8 @@
 
 	padding: 0.25rem 0.6rem;
 
-	box-sizing: border-box;
-	box-shadow: 0 0 14px rgba(255, 255, 255, 0.08);
-
 	color: var(--text);
 	font-size: 0.72rem;
-	font-family: "JetBrains Mono", "Fira Code", "Cascadia Code", Consolas, monospace;
 	letter-spacing: 0.04em;
 
 	z-index: 1000;
@@ -369,19 +439,49 @@
 	line-height: 1;
 	white-space: nowrap;
 }
-  @media (max-width: 700px) {
+
+/* ---------- Responsive ---------- */
+
+@media (max-width: 700px) {
 	.now-playing {
-	  position: static;
-	  width: 100%;
-	  margin-bottom: 1rem;
+		position: static;
+		width: 100%;
+		margin-bottom: 1rem;
 	}
-  }
-  @keyframes blink {
+
+	.taskbar-left,
+	.taskbar-center,
+	.info-row,
+	.ipbox {
+		position: static;
+		transform: none;
+		width: 100%;
+		margin-bottom: 1rem;
+	}
+
+	.info-row {
+		flex-direction: column;
+		align-items: stretch;
+	}
+
+	.vertical-divider {
+		display: none;
+	}
+
+	.project-timeline {
+		width: 100%;
+	}
+}
+
+/* ---------- Animations ---------- */
+
+@keyframes blink {
 	50% {
-	  opacity: 0;
+		opacity: 0;
 	}
-  }
-  @keyframes bootFade {
+}
+
+@keyframes bootFade {
 	from {
 		opacity: 0;
 		filter: blur(4px);
@@ -393,28 +493,38 @@
 		filter: blur(0);
 		transform: translateY(0) scale(1);
 	}
-  }
+}
 
-  .introduction,
-  .now-playing,
-  .taskbar-left,
-  .taskbar-center,
-  .project-timeline {
-	  opacity: 0;
-	  animation: bootFade 0.75s ease forwards;
-  }
+.introduction,
+.now-playing,
+.taskbar-left,
+.taskbar-center,
+.project-timeline,
+.ipbox {
+	opacity: 0;
+	animation: bootFade 0.75s ease forwards;
+}
 
-  .introduction {
-	  animation-delay: 0.1s;
-  }
+.introduction {
+	animation-delay: 0.1s;
+}
 
-  .now-playing {
-	  animation-delay: 0.25s;
-  }
+.now-playing {
+	animation-delay: 0.25s;
+}
 
-  .taskbar-left {
-	  animation-delay: 0.4s;
-  }
-  .taskbar-center {
+.taskbar-left {
 	animation-delay: 0.4s;
+}
+
+.taskbar-center {
+	animation-delay: 0.4s;
+}
+
+.project-timeline {
+	animation-delay: 0.55s;
+}
+
+.ipbox {
+	animation-delay: 0.15s;
 }
