@@ -22,7 +22,7 @@ async function loadIPBox() {
 		}
 
 		ipElement.textContent =
-			`${ipText} | ${city}, ${region} ${country} | ${network}`;
+			`🌐 ${ipText} | ${city}, ${region}, ${country} | ${network}`;
 	} catch (err) {
 		console.error("IP box error:", err);
 
