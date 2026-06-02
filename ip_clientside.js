@@ -8,12 +8,6 @@ async function loadIPBox() {
 
 		const data = await res.json();
 
-		const ipText = data.ip || "unknown";
-		const city = data.location?.city || "unknown";
-		const region = data.location?.region || "";
-		const country = data.location?.country || "unknown";
-		const network = data.location?.network || "unknown";
-
 		const ipElement = document.getElementById("ip");
 
 		if (!ipElement) {
@@ -21,8 +15,43 @@ async function loadIPBox() {
 			return;
 		}
 
+		const ip = data.ip || "unknown";
+
+		const city =
+			data.cloudflare?.city ||
+			data.ipinfo?.city ||
+			"unknown";
+
+		const region =
+			data.cloudflare?.region ||
+			data.ipinfo?.region ||
+			"";
+
+		const country =
+			data.cloudflare?.country ||
+			data.ipinfo?.country ||
+			"unknown";
+
+		const asn =
+			data.cloudflare?.asn ||
+			data.ipinfo?.asn?.asn ||
+			"unknown ASN";
+
+		const org =
+			data.cloudflare?.asOrganization ||
+			data.ipinfo?.org ||
+			data.ipinfo?.asn?.name ||
+			"unknown network";
+
+		const timezone =
+			data.cloudflare?.timezone ||
+			data.ipinfo?.timezone ||
+			"unknown timezone";
+
+		const network = data.network || "unknown";
+
 		ipElement.textContent =
-			`🌐 ${ipText} | ${city}, ${region}, ${country} | ${network}`;
+			`🌐 ${ip} | ${city}, ${region}, ${country} | ${org} (${asn}) | ${timezone} | ${network}`;
 	} catch (err) {
 		console.error("IP box error:", err);
 
