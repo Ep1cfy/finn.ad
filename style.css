@@ -230,7 +230,7 @@ main {
 	border-radius: 10px;
 
 	display: flex;
-	align-items: center;
+	align-items: stretch;
 	justify-content: center;
 
 	padding: 0.9rem;
@@ -246,13 +246,10 @@ main {
 
 	display: flex;
 	flex-direction: column;
-	align-items: flex-start;
-	justify-content: center;
-	gap: 0.35rem;
+	gap: 0.45rem;
 
 	background: transparent;
 	border: none;
-	border-radius: 0;
 	box-shadow: none;
 
 	color: rgba(255, 255, 255, 0.85);
@@ -268,19 +265,60 @@ main {
 	text-transform: uppercase;
 	letter-spacing: 0.08em;
 	font-size: 0.65rem;
+	font-weight: 700;
 }
 
 .playcount-main {
 	color: var(--purple);
-	font-size: 0.8rem;
+	font-size: 0.82rem;
 	font-weight: 700;
 	white-space: nowrap;
+}
+
+.playcount-grid {
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	gap: 0.4rem;
+}
+
+.playcount-grid div {
+	background: rgba(255, 255, 255, 0.035);
+	border: 1px solid rgba(255, 255, 255, 0.12);
+	border-radius: 6px;
+	padding: 0.35rem;
+}
+
+.stat-key {
+	display: block;
+	color: var(--muted);
+	font-size: 0.6rem;
+	text-transform: uppercase;
+	letter-spacing: 0.08em;
+}
+
+.stat-value {
+	display: block;
+	color: rgba(255, 255, 255, 0.88);
+	font-size: 0.68rem;
+	margin-top: 0.15rem;
+}
+
+.stat-section {
+	border-top: 1px solid rgba(255, 255, 255, 0.12);
+	padding-top: 0.45rem;
+}
+
+.stat-section-title {
+	color: rgba(255, 255, 255, 0.85);
+	font-size: 0.62rem;
+	text-transform: uppercase;
+	letter-spacing: 0.08em;
+	margin-bottom: 0.25rem;
 }
 
 .playcount-sub {
 	color: var(--muted);
 	font-size: 0.68rem;
-	max-width: 100%;
 
 	overflow: hidden;
 	text-overflow: ellipsis;

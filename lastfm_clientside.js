@@ -34,12 +34,41 @@ async function loadLastfm() {
 
 		if (playcountElement && stats) {
 			playcountElement.innerHTML = `
-	<div class="playcount-label">last.fm stats</div>
-	<div class="playcount-main">🎵 ${stats.playcount} scrobbles</div>
-	<div class="playcount-sub">top track: ${stats.topTrack?.title || "unknown"}</div>
-	<div class="playcount-sub">top artist: ${stats.topArtist?.name || "unknown"}</div>
-	<div class="playcount-sub">top album: ${stats.topAlbum?.title || "unknown"}</div>
-`;
+				<div class="playcount-label">last.fm stats</div>
+		
+				<div class="playcount-main">♫ ${Number(stats.playcount).toLocaleString()} scrobbles</div>
+		
+				<div class="playcount-grid">
+					<div>
+						<span class="stat-key">avg/day</span>
+						<span class="stat-value">${stats.avgScrobblesPerDay || "--"}</span>
+					</div>
+		
+					<div>
+						<span class="stat-key">since</span>
+						<span class="stat-value">${stats.registeredDate || "--"}</span>
+					</div>
+				</div>
+		
+				<div class="stat-section">
+					<div class="stat-section-title">overall</div>
+					<div class="playcount-sub">track: ${stats.overall?.topTrack?.title || "unknown"}</div>
+					<div class="playcount-sub">artist: ${stats.overall?.topArtist?.name || "unknown"}</div>
+					<div class="playcount-sub">album: ${stats.overall?.topAlbum?.title || "unknown"}</div>
+				</div>
+		
+				<div class="stat-section">
+					<div class="stat-section-title">this week</div>
+					<div class="playcount-sub">track: ${stats.sevenDay?.topTrack?.title || "unknown"}</div>
+					<div class="playcount-sub">artist: ${stats.sevenDay?.topArtist?.name || "unknown"}</div>
+				</div>
+		
+				<div class="stat-section">
+					<div class="stat-section-title">this month</div>
+					<div class="playcount-sub">track: ${stats.oneMonth?.topTrack?.title || "unknown"}</div>
+					<div class="playcount-sub">artist: ${stats.oneMonth?.topArtist?.name || "unknown"}</div>
+				</div>
+			`;
 		}
 	} catch (err) {
 		console.error("Last.fm error:", err);
