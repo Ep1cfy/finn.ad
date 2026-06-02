@@ -93,19 +93,26 @@ function pointerDistortion(x, y) {
 }
 
 function draw(time) {
-	time *= 0.00042;
+	time *= 0.00035;
 
 	ctx.clearRect(0, 0, w, h);
 
-	ctx.fillStyle = "rgba(24, 27, 32, 0.16)";
+	// subtle vignette-ish dark wash
+	ctx.fillStyle = "rgba(24, 27, 32, 0.18)";
 	ctx.fillRect(0, 0, w, h);
 
+<<<<<<< HEAD
 	const spacing = 42;
 	const amp = 10;
 	const step = 18;
 
 	const cx = w / 2;
 	const cy = h / 2;
+=======
+	const spacing = 42; // distance between grid lines
+	const amp = 7;      // distortion amount
+	const step = 18;    // smoothness of each line segment
+>>>>>>> parent of ab6bc7d (math update again)
 
 	pointer.force *= 0.92;
 
@@ -114,6 +121,7 @@ function draw(time) {
 		ctx.beginPath();
 
 		for (let y = 0; y <= h; y += step) {
+<<<<<<< HEAD
 			const dx = (baseX - cx) / w;
 			const dy = (y - cy) / h;
 			const r = Math.sqrt(dx * dx + dy * dy);
@@ -121,10 +129,12 @@ function draw(time) {
 			const swirl = Math.sin(r * 18 - time * 3 + seed) * 3.5;
 
 			let x =
+=======
+			const x =
+>>>>>>> parent of ab6bc7d (math update again)
 				baseX +
-				Math.sin(y * 0.013 + time * 2.4 + seed + baseX * 0.01) * amp +
-				Math.cos(y * 0.005 + time * 1.5 + seed * 0.7) * (amp * 0.55) +
-				swirl;
+				Math.sin(y * 0.012 + time * 2.2 + seed + baseX * 0.01) * amp +
+				Math.cos(y * 0.004 + time * 1.3 + seed * 0.7) * (amp * 0.45);
 
 			const distortion = pointerDistortion(x, y);
 
@@ -148,6 +158,7 @@ function draw(time) {
 		ctx.beginPath();
 
 		for (let x = 0; x <= w; x += step) {
+<<<<<<< HEAD
 			const dx = (x - cx) / w;
 			const dy = (baseY - cy) / h;
 			const r = Math.sqrt(dx * dx + dy * dy);
@@ -155,10 +166,12 @@ function draw(time) {
 			const swirl = Math.cos(r * 18 - time * 3 + seed) * 3.5;
 
 			let y =
+=======
+			const y =
+>>>>>>> parent of ab6bc7d (math update again)
 				baseY +
-				Math.cos(x * 0.013 + time * 2.1 + seed + baseY * 0.01) * amp +
-				Math.sin(x * 0.005 + time * 1.25 + seed * 0.9) * (amp * 0.55) +
-				swirl;
+				Math.cos(x * 0.012 + time * 2.0 + seed + baseY * 0.01) * amp +
+				Math.sin(x * 0.004 + time * 1.15 + seed * 0.9) * (amp * 0.45);
 
 			const distortion = pointerDistortion(x, y);
 
@@ -169,14 +182,19 @@ function draw(time) {
 			else ctx.lineTo(xx, y);
 		}
 
+<<<<<<< HEAD
 		ctx.strokeStyle = pointer.down
 			? "rgba(97, 175, 239, 0.075)"
 			: "rgba(97, 175, 239, 0.038)";
 
+=======
+		ctx.strokeStyle = "rgba(97, 175, 239, 0.035)";
+>>>>>>> parent of ab6bc7d (math update again)
 		ctx.lineWidth = 1;
 		ctx.stroke();
 	}
 
+<<<<<<< HEAD
 	// cursor distortion halo
 	if (pointer.active && pointer.force > 1) {
 		const radius = pointer.down ? 260 : 180;
@@ -198,6 +216,19 @@ function draw(time) {
 		ctx.beginPath();
 		ctx.arc(pointer.x, pointer.y, radius, 0, Math.PI * 2);
 		ctx.fill();
+=======
+	// occasional brighter intersections / nodes
+	for (let gx = 0; gx <= w; gx += spacing * 2) {
+		for (let gy = 0; gy <= h; gy += spacing * 2) {
+			const px = gx + Math.sin(time * 2 + gy * 0.01 + seed) * 4;
+			const py = gy + Math.cos(time * 2 + gx * 0.01 + seed) * 4;
+
+			ctx.beginPath();
+			ctx.arc(px, py, 0.8, 0, Math.PI * 2);
+			ctx.fillStyle = "rgba(198, 120, 221, 0.06)";
+			ctx.fill();
+		}
+>>>>>>> parent of ab6bc7d (math update again)
 	}
 
 	requestAnimationFrame(draw);
