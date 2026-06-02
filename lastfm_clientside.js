@@ -21,7 +21,15 @@ async function loadLastfm() {
 
 			document.getElementById("np-status").textContent =
 				track.nowPlaying ? "now playing" : "last played";
+				const wave = document.getElementById("np-wave");
 
+				if (wave) {
+					if (track.nowPlaying) {
+						wave.classList.add("active");
+					} else {
+						wave.classList.remove("active");
+					}
+				}
 			if (track.image) {
 				document.getElementById("np-cover").src = track.image;
 				document.getElementById("np-cover").style.display = "block";
