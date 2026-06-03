@@ -1,0 +1,12 @@
+name = "finn-mail-inbox"
+main = "src/index.js"
+compatibility_date = "2026-06-03"
+
+[[d1_databases]]
+binding = "DB"
+database_name = "finn-mail"
+database_id = "your-d1-database-id"
+
+[[r2_buckets]]
+binding = "MAIL_BUCKET"
+bucket_name = "finn-mail-raw"
