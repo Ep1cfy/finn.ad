@@ -1,6 +1,6 @@
 {
 	"scripts": {
-	  "deploy": "wrangler deploy"
+	  "deploy": "pywrangler deploy"
 	},
 	"dependencies": {
 	  "wrangler": "^4.0.0"
