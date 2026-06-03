@@ -1,0 +1,4 @@
+name = "finn-python-worker"
+main = "src/entry.py"
+compatibility_date = "2026-06-03"
+compatibility_flags = ["python_workers"]
