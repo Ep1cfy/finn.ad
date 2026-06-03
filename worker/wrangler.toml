@@ -5,7 +5,7 @@ compatibility_date = "2026-06-03"
 [[d1_databases]]
 binding = "DB"
 database_name = "finn-mail"
-database_id = "your-d1-database-id"
+database_id = "52524339-8001-4b70-9bf9-767adcb60cff"
 
 [[r2_buckets]]
 binding = "MAIL_BUCKET"
