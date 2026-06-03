@@ -1,0 +1,596 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>mail | finn</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="/style.css">
+  <link rel="icon" type="image/x-icon" href="/favicon.png">
+  <style>
+    .mail-page {
+      min-height: 100dvh;
+      width: 100%;
+      padding: clamp(1rem, 3vw, 2rem);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: transparent;
+      border: 0;
+      border-radius: 0;
+      box-shadow: none;
+    }
+
+    .mail-shell {
+      width: min(1120px, 100%);
+      display: grid;
+      grid-template-columns: 260px minmax(0, 1fr);
+      gap: 1rem;
+      position: relative;
+      z-index: 10;
+      opacity: 0;
+      animation: bootFade 0.75s ease forwards;
+    }
+
+    .mail-panel,
+    .mail-sidebar,
+    .mail-compose {
+      background: var(--bg-dark);
+      border: 1px solid var(--accent-white);
+      border-radius: 10px;
+      box-shadow: var(--shadow), var(--glow);
+    }
+
+    .mail-sidebar {
+      padding: 0.95rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.9rem;
+    }
+
+    .mail-home {
+      width: 36px;
+      height: 36px;
+      display: grid;
+      place-items: center;
+      border: 1px solid rgba(255, 255, 255, 0.14);
+      border-radius: 8px;
+      color: var(--accent-white);
+      font-size: 1.1rem;
+    }
+
+    .mail-title-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.75rem;
+    }
+
+    .mail-kicker,
+    .mail-section-title,
+    .mail-meta,
+    .mail-label {
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      font-size: 0.66rem;
+      font-weight: 700;
+    }
+
+    .mail-kicker,
+    .mail-section-title {
+      color: rgba(255, 255, 255, 0.84);
+    }
+
+    .mail-address {
+      margin-top: 0.35rem;
+      color: var(--blue);
+      font-size: 0.95rem;
+      font-weight: 700;
+      overflow-wrap: anywhere;
+    }
+
+    .mail-status {
+      display: grid;
+      gap: 0.5rem;
+    }
+
+    .mail-status-item,
+    .mail-folder,
+    .mail-message {
+      background: rgba(255, 255, 255, 0.035);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-radius: 6px;
+    }
+
+    .mail-status-item {
+      padding: 0.55rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.6rem;
+      color: var(--text);
+      font-size: 0.72rem;
+    }
+
+    .mail-status-value {
+      color: var(--green);
+      font-weight: 700;
+    }
+
+    .mail-nav {
+      display: grid;
+      gap: 0.45rem;
+    }
+
+    .mail-folder {
+      width: 100%;
+      min-height: 38px;
+      padding: 0.55rem 0.65rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.5rem;
+      color: var(--text);
+      font-family: var(--font-mono);
+      font-size: 0.76rem;
+      text-align: left;
+      transition: border-color 0.15s ease, color 0.15s ease, background 0.15s ease;
+    }
+
+    .mail-folder.active,
+    .mail-folder:hover {
+      border-color: var(--blue);
+      color: var(--blue);
+      background: rgba(97, 175, 239, 0.08);
+    }
+
+    .mail-count {
+      color: var(--purple);
+      font-size: 0.7rem;
+    }
+
+    .mail-panel {
+      min-width: 0;
+      overflow: hidden;
+    }
+
+    .mail-header {
+      padding: 1rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+    }
+
+    .mail-heading {
+      margin: 0;
+      color: var(--blue);
+      font-size: clamp(1.35rem, 4vw, 2.35rem);
+      line-height: 1.1;
+    }
+
+    .mail-heading::before {
+      content: "> ";
+      color: var(--green);
+    }
+
+    .mail-header-actions {
+      display: flex;
+      align-items: center;
+      gap: 0.55rem;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+    }
+
+    .mail-button {
+      min-height: 36px;
+      padding: 0 0.8rem;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.4rem;
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      border-radius: 6px;
+      background: rgba(255, 255, 255, 0.035);
+      color: var(--text);
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      text-decoration: none;
+      transition: border-color 0.15s ease, color 0.15s ease, background 0.15s ease;
+    }
+
+    .mail-button:hover,
+    .mail-button.primary {
+      border-color: var(--purple);
+      color: var(--purple);
+      background: rgba(198, 120, 221, 0.08);
+    }
+
+    .mail-grid {
+      padding: 1rem;
+      display: block;
+    }
+
+    .mail-stack {
+      display: grid;
+      gap: 1rem;
+      align-content: start;
+    }
+
+    .mail-card {
+      min-width: 0;
+    }
+
+    .mail-card-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.75rem;
+      margin-bottom: 0.65rem;
+    }
+
+    .mail-meta {
+      color: var(--muted);
+    }
+
+    .mail-message-list {
+      display: grid;
+      gap: 0.55rem;
+    }
+
+    .mail-message {
+      padding: 0.7rem;
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto;
+      gap: 0.35rem 0.8rem;
+      transition: border-color 0.15s ease, background 0.15s ease;
+    }
+
+    .mail-message:hover {
+      border-color: var(--blue);
+      background: rgba(97, 175, 239, 0.06);
+    }
+
+    .mail-from {
+      color: var(--accent-white);
+      font-size: 0.78rem;
+      font-weight: 700;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    .mail-time {
+      color: var(--muted);
+      font-size: 0.68rem;
+      white-space: nowrap;
+    }
+
+    .mail-subject {
+      grid-column: 1 / -1;
+      color: var(--text);
+      font-size: 0.78rem;
+      line-height: 1.45;
+    }
+
+    .mail-tag {
+      color: var(--yellow);
+    }
+
+    .mail-compose {
+      position: absolute;
+      top: 4.8rem;
+      right: 1rem;
+      width: min(360px, calc(100vw - 2rem));
+      padding: 0.85rem;
+      z-index: 30;
+      opacity: 0;
+      pointer-events: none;
+      transform: translateY(-6px);
+      transition: opacity 0.15s ease, transform 0.15s ease;
+    }
+
+    .mail-compose.open {
+      opacity: 1;
+      pointer-events: auto;
+      transform: translateY(0);
+    }
+
+    .mail-compose-button {
+      width: 38px;
+      height: 38px;
+      padding: 0;
+      display: flex;
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      border-radius: 8px;
+	  background: rgba(255, 255, 255, 0.035);
+	  align-items: center;
+      justify-content: center;
+    }
+
+    .mail-compose-button img {
+      width: 24px;
+      height: 24px;
+      display: block;
+      object-fit: contain;
+      opacity: 0.9;
+    }
+
+    .mail-compose-button:hover,
+    .mail-compose-button[aria-expanded="true"] {
+      border-color: var(--purple);
+      background: rgba(198, 120, 221, 0.08);
+    }
+
+    .mail-form {
+      display: grid;
+      gap: 0.65rem;
+    }
+
+    .mail-label {
+      display: grid;
+      gap: 0.35rem;
+      color: var(--muted);
+    }
+
+    .mail-field {
+      width: 100%;
+      min-height: 38px;
+      padding: 0.55rem 0.65rem;
+      background: rgba(255, 255, 255, 0.035);
+      border: 1px solid rgba(255, 255, 255, 0.14);
+      border-radius: 6px;
+      color: var(--text);
+      font: inherit;
+      font-size: 0.76rem;
+      outline: none;
+    }
+
+    textarea.mail-field {
+      min-height: 138px;
+      resize: vertical;
+      line-height: 1.5;
+    }
+
+    .mail-field:focus {
+      border-color: var(--blue);
+      box-shadow: 0 0 0 2px rgba(97, 175, 239, 0.08);
+    }
+
+    .mail-note {
+      color: var(--muted);
+      font-size: 0.7rem;
+      line-height: 1.55;
+      margin: 0;
+    }
+
+    @media (max-width: 860px) {
+      .mail-page {
+        align-items: flex-start;
+      }
+
+      .mail-shell {
+        grid-template-columns: 1fr;
+      }
+
+      .mail-sidebar {
+        order: 2;
+      }
+
+      .mail-header {
+        align-items: flex-start;
+        flex-direction: column;
+      }
+
+      .mail-header-actions {
+        justify-content: flex-start;
+      }
+    }
+
+    @media (max-width: 560px) {
+      .mail-page {
+        padding: 0.75rem;
+      }
+
+      .mail-message {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div id="cursor"></div>
+  <div id="cursor-dot"></div>
+  <canvas id="bg-canvas"></canvas>
+
+  <main class="mail-page">
+    <section class="mail-shell" aria-label="Private mail workspace">
+      <aside class="mail-sidebar">
+        <div class="mail-title-row">
+          <a href="/" class="mail-home" aria-label="Back home">@</a>
+          <span class="mail-kicker">access granted</span>
+        </div>
+
+        <div>
+          <div class="mail-kicker">primary address</div>
+          <div class="mail-address" id="mail-address">finn@finn.ad</div>
+        </div>
+
+        <div class="mail-status">
+          <div class="mail-status-item">
+            <span>auth</span>
+            <span class="mail-status-value">github</span>
+          </div>
+          <div class="mail-status-item">
+            <span>scope</span>
+            <span class="mail-status-value">private</span>
+          </div>
+          <div class="mail-status-item">
+            <span>routing</span>
+            <span class="mail-status-value">active</span>
+          </div>
+        </div>
+
+        <nav class="mail-nav" aria-label="Mail folders">
+          <button class="mail-folder active" type="button">
+            <span>inbox</span>
+            <span class="mail-count">07</span>
+          </button>
+          <button class="mail-folder" type="button">
+            <span>priority</span>
+            <span class="mail-count">01</span>
+          </button>
+          <button class="mail-folder" type="button">
+            <span>archive</span>
+            <span class="mail-count">12</span>
+          </button>
+          <button class="mail-folder" type="button">
+            <span>rules</span>
+            <span class="mail-count">04</span>
+          </button>
+        </nav>
+      </aside>
+
+      <section class="mail-panel">
+        <header class="mail-header">
+          <div>
+            <h1 class="mail-heading">mail</h1>
+            <div class="mail-meta">personal inbox control surface</div>
+          </div>
+
+          <div class="mail-header-actions">
+            <button class="mail-button" type="button" id="copy-mail">copy</button>
+            <button class="mail-compose-button" type="button" id="compose-toggle" aria-label="Compose email" aria-expanded="false">
+              <img src="/mail.png" alt="">
+            </button>
+          </div>
+        </header>
+
+        <div class="mail-grid">
+          <div class="mail-stack">
+            <section class="mail-card">
+              <div class="mail-card-head">
+                <div class="mail-section-title">inbox</div>
+                <div class="mail-meta">latest messages</div>
+              </div>
+
+              <div class="mail-message-list">
+                <article class="mail-message">
+                  <div class="mail-from">alex</div>
+                  <time class="mail-time">09:42</time>
+                  <div class="mail-subject"><span class="mail-tag">[reply]</span> that tiny inbox UI idea is actually kind of clean</div>
+                </article>
+
+                <article class="mail-message">
+                  <div class="mail-from">mira</div>
+                  <time class="mail-time">08:17</time>
+                  <div class="mail-subject"><span class="mail-tag">[plans]</span> are you around later this week?</div>
+                </article>
+
+                <article class="mail-message">
+                  <div class="mail-from">ann arbor transit</div>
+                  <time class="mail-time">yesterday</time>
+                  <div class="mail-subject"><span class="mail-tag">[alert]</span> route detour notice for this afternoon</div>
+                </article>
+
+                <article class="mail-message">
+                  <div class="mail-from">Last.fm</div>
+                  <time class="mail-time">mon</time>
+                  <div class="mail-subject"><span class="mail-tag">[account]</span> Weekly listening report is ready</div>
+                </article>
+
+                <article class="mail-message">
+                  <div class="mail-from">Spotify</div>
+                  <time class="mail-time">sun</time>
+                  <div class="mail-subject"><span class="mail-tag">[music]</span> New release radar for your library</div>
+                </article>
+
+                <article class="mail-message">
+                  <div class="mail-from">Vercel</div>
+                  <time class="mail-time">jun 01</time>
+                  <div class="mail-subject"><span class="mail-tag">[deploy]</span> Preview deployment completed for dev branch</div>
+                </article>
+
+                <article class="mail-message">
+                  <div class="mail-from">finn@finn.ad</div>
+                  <time class="mail-time">may 30</time>
+                  <div class="mail-subject"><span class="mail-tag">[draft]</span> Notes for tightening up personal email routing</div>
+                </article>
+              </div>
+            </section>
+          </div>
+
+          <aside class="mail-compose" id="mail-compose" aria-label="Compose draft">
+            <div class="mail-card-head">
+              <div class="mail-section-title">compose</div>
+              <div class="mail-meta">client-side</div>
+            </div>
+
+            <form class="mail-form" id="mail-form">
+              <label class="mail-label">
+                to
+                <input class="mail-field" name="to" value="finn@finn.ad" readonly>
+              </label>
+
+              <label class="mail-label">
+                subject
+                <input class="mail-field" name="subject" placeholder="quick thought">
+              </label>
+
+              <label class="mail-label">
+                message
+                <textarea class="mail-field" name="body" placeholder="write a note here..."></textarea>
+              </label>
+
+              <button class="mail-button primary" type="submit">send via client</button>
+              <p class="mail-note">This page does not store messages. It hands the draft to your local mail client.</p>
+            </form>
+          </aside>
+        </div>
+      </section>
+    </section>
+  </main>
+
+  <script src="/background.js"></script>
+  <script src="/cursor.js"></script>
+  <script>
+    const copyButtons = [document.getElementById("copy-mail")];
+    const composeToggle = document.getElementById("compose-toggle");
+    const composePanel = document.getElementById("mail-compose");
+    const mailForm = document.getElementById("mail-form");
+    const address = document.getElementById("mail-address").textContent.trim();
+
+    async function copyAddress(button) {
+      if (navigator.clipboard) {
+        await navigator.clipboard.writeText(address);
+      }
+
+      const previous = button.textContent;
+      button.textContent = "copied";
+      setTimeout(() => {
+        button.textContent = previous;
+      }, 1200);
+    }
+
+    copyButtons.forEach((button) => {
+      button.addEventListener("click", () => copyAddress(button));
+    });
+
+    composeToggle.addEventListener("click", () => {
+      const isOpen = composePanel.classList.toggle("open");
+      composeToggle.setAttribute("aria-expanded", String(isOpen));
+      if (isOpen) {
+        composePanel.querySelector("input[name='subject']").focus();
+      }
+    });
+
+    mailForm.addEventListener("submit", (event) => {
+      event.preventDefault();
+      const data = new FormData(mailForm);
+      const subject = encodeURIComponent(data.get("subject") || "");
+      const body = encodeURIComponent(data.get("body") || "");
+      window.location.href = `mailto:${address}?subject=${subject}&body=${body}`;
+    });
+  </script>
+</body>
+</html>
