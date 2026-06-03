@@ -421,6 +421,22 @@ main {
 	opacity: 1;
 	transform: scale(1.04);
 }
+.mail {
+	width: 80px;
+	height: 80px;
+
+	display: block;
+	object-fit: contain;
+	flex-shrink: 0;
+
+	opacity: 0.8;
+	transition: opacity 0.15s ease, transform 0.15s ease;
+}
+
+.mail:hover {
+	opacity: 1;
+	transform: scale(1.04);
+}
 
 /* ---------- Physics active label ---------- */
 .taskbar-center {
