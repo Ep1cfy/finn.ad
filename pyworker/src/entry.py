@@ -11,4 +11,4 @@ async def parse_email(self):
     
 class Default(WorkerEntrypoint):
     async def fetch(self, request):
-        return Response("hello world")
+        return Response(parse_email())
