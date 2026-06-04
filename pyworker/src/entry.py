@@ -74,10 +74,12 @@ class Default(WorkerEntrypoint):
     async def fetch(self, request):
         url = urlparse(str(request.url))
         params = parse_qs(url.query)
+
         email_id = params.get("id", [None])[0]
         requested_format = params.get("format", ["json"])[0]
 
         if email_id and requested_format == "html":
             return await self.get_email_html(email_id)
 
-        return Response.json(await self.parse_email())
+        emails = await self.parse_email()
+        return Response.json(emails)
