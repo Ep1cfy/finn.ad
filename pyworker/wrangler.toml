@@ -2,3 +2,7 @@ name = "finn-python-worker"
 main = "src/entry.py"
 compatibility_date = "2026-06-04"
 compatibility_flags = ["python_workers"]
+[[d1_databases]]
+binding = "MAIL_DB"
+database_name = "finn-mail"
+database_id = "52524339-8001-4b70-9bf9-767adcb60cff"
