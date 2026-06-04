@@ -33,14 +33,29 @@ class Default(WorkerEntrypoint):
 
     async def get_email_html(self, email_id):
         result = await self.env.MAIL_DB.prepare(
-            "SELECT r2_key FROM emails WHERE id = ? LIMIT 1"
+            """
+            SELECT
+                id,
+                r2_key,
+                from_addr AS sender,
+                to_addr AS recipient,
+                subject,
+                received_at
+            FROM emails
+            WHERE id = ?
+            LIMIT 1
+            """
         ).bind(email_id).all()
 
-        rows = result.results.to_py()
+        rows = result.results
+        if hasattr(rows, "to_py"):
+            rows = rows.to_py()
+
         if not rows:
             return Response("Email not found", status=404)
 
-        r2_key = rows[0]["r2_key"]
+        metadata = rows[0]
+        r2_key = metadata["r2_key"]
         obj = await self.env.MAIL_BUCKET.get(r2_key)
 
         if obj is None:
@@ -49,19 +64,28 @@ class Default(WorkerEntrypoint):
         raw_email = await obj.text()
         message = Parser(policy=policy.default).parsestr(raw_email)
         part = message.get_body(preferencelist=("html", "plain"))
-        metadata = parse_email()
+
+        subject = metadata.get("subject") or ""
+        sender = metadata.get("sender") or ""
+        recipient = metadata.get("recipient") or ""
+
         if part is None:
             body = "<p>No readable email body.</p>"
         elif part.get_content_type() == "text/html":
+            email_body = part.get_content()
             body = f"""
-            <div id=\"subject\"><h1>{escape(metadata["email_id"]["subject"])}</h1></div>
-            <div id=\"from\"><p>from {escape(metadata["email_id"]["sender"])}</p></div>
-            <div id=\"to\"><p> to {escape(metadata["email_id"]["recipient"])}</p></div>
-            <div id=\"body\"><p>{escape(part.get_content())}</p></div>
+            <div id="subject"><h1>{escape(subject)}</h1></div>
+            <div id="from"><p>from {escape(sender)}</p></div>
+            <div id="to"><p>to {escape(recipient)}</p></div>
+            <div id="body">{email_body}</div>
             """
-            
         else:
-            body = f"<pre>{escape(part.get_content())}</pre>"
+            body = f"""
+            <div id="subject"><h1>{escape(subject)}</h1></div>
+            <div id="from"><p>from {escape(sender)}</p></div>
+            <div id="to"><p>to {escape(recipient)}</p></div>
+            <div id="body"><pre>{escape(part.get_content())}</pre></div>
+            """
 
         return Response(
             body,
