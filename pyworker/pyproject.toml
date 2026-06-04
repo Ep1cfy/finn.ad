@@ -1,7 +1,12 @@
 [project]
 name = "finn-python-worker"
 version = "0.1.0"
-requires-python = ">=3.13"
-dependencies = [
-    "workers-py>=1.9.0",
+description = "Minimal Cloudflare Python Worker test"
+requires-python = ">=3.12"
+dependencies = []
+
+[dependency-groups]
+dev = [
+    "workers-py>=1.9.4",
+    "workers-runtime-sdk>=1.1.6",
 ]

@@ -1,8 +1,10 @@
 {
+	"private": true,
 	"scripts": {
-	  "deploy": "pywrangler deploy"
+		"dev": "uv run pywrangler dev",
+		"deploy": "uv run pywrangler deploy"
 	},
-	"dependencies": {
-	  "wrangler": "^4.0.0"
+	"devDependencies": {
+		"wrangler": "^4.0.0"
 	}
-  }
+}

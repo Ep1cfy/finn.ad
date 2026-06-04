@@ -26,7 +26,7 @@ export default {
 		message.to,
 		subject,
 		r2Key,
-		raw.length
+		message.rawSize
 	  ).run();
 	},
   };
