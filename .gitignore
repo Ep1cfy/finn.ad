@@ -3,5 +3,7 @@ node_modules/
 .dev.vars
 .env
 .venv/
+.venv-workers/
+python_modules/
 __pycache__/
 *.pyc

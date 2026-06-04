@@ -1,8 +1,13 @@
 {
+	"name": "finn-python-worker",
 	"private": true,
+	"engines": {
+		"node": ">=22.0.0"
+	},
 	"scripts": {
-		"dev": "uv run pywrangler dev",
-		"deploy": "uv run pywrangler deploy"
+		"setup": "python -m pip install uv",
+		"dev": "python -m uv run pywrangler dev",
+		"deploy": "python -m uv run pywrangler deploy"
 	},
 	"devDependencies": {
 		"wrangler": "^4.0.0"
