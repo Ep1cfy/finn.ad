@@ -27,7 +27,8 @@ class Default(WorkerEntrypoint):
             rows = rows.to_py()
 
         return {
-            "inbox": rows
+            row["id"]: row
+            for row in rows
         }
 
     async def get_email_html(self, email_id):
@@ -48,11 +49,17 @@ class Default(WorkerEntrypoint):
         raw_email = await obj.text()
         message = Parser(policy=policy.default).parsestr(raw_email)
         part = message.get_body(preferencelist=("html", "plain"))
-
+        metadata = parse_email()
         if part is None:
             body = "<p>No readable email body.</p>"
         elif part.get_content_type() == "text/html":
-            body = part.get_content()
+            body = f"""
+            <div id=\"subject\"><h1>{escape(metadata["email_id"]["subject"])}</h1></div>
+            <div id=\"from\"><p>from {escape(metadata["email_id"]["sender"])}</p></div>
+            <div id=\"to\"><p> to {escape(metadata["email_id"]["recipient"])}</p></div>
+            <div id=\"body\"><p>{escape(part.get_content())}</p></div>
+            """
+            
         else:
             body = f"<pre>{escape(part.get_content())}</pre>"
 
