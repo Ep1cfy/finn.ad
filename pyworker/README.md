@@ -11,14 +11,13 @@ This is a tiny HTTP-only Python Worker sanity check. It proves the Python Worker
 
 ```powershell
 cd pyworker
-python -m uv run pywrangler dev
-python -m uv run pywrangler deploy
+uv run pywrangler dev
+uv run pywrangler deploy
 ```
 
 The `package.json` scripts delegate to the same `pywrangler` commands:
 
 ```powershell
-npm run setup
 npm run dev
 npm run deploy
 ```
@@ -29,7 +28,7 @@ Use these settings for the connected GitHub deployment:
 
 ```text
 Root directory: pyworker
-Build command: npm run setup
+Build command: npm install
 Deploy command: npm run deploy
 ```
 

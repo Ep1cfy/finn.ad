@@ -5,9 +5,8 @@
 		"node": ">=22.0.0"
 	},
 	"scripts": {
-		"setup": "python -m pip install uv",
-		"dev": "python -m uv run pywrangler dev",
-		"deploy": "python -m uv run pywrangler deploy"
+		"dev": "uv run pywrangler dev",
+		"deploy": "uv run pywrangler deploy"
 	},
 	"devDependencies": {
 		"wrangler": "^4.0.0"
