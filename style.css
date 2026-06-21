@@ -422,8 +422,8 @@ main {
 	transform: scale(1.04);
 }
 .mail {
-	width: 40px;
-	height: 40px;
+	width: 37px;
+	height: 37px;
 
 	display: block;
 	object-fit: contain;
@@ -792,6 +792,11 @@ main {
 	.physics-sim-icon {
 		width: 64px;
 		height: 64px;
+	}
+
+	.mail {
+		width: 30px;
+		height: 30px;
 	}
 
 	.playcount-main,
