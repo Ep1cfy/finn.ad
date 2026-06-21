@@ -1,0 +1,33 @@
+name = "mail-cleaner"
+main = "src/index.ts"
+compatibility_date = "2026-06-21"
+
+# Runs once every hour.
+[triggers]
+crons = ["*/15 * * * *"]
+
+[[d1_databases]]
+binding = "DB"
+database_name = "finn-mail"
+database_id = "52524339-8001-4b70-9bf9-767adcb60cff"
+
+[[r2_buckets]]
+binding = "MAIL_BUCKET"
+bucket_name = "finn-mail-raw"
+
+[vars]
+# First deploy should be true. It logs what it WOULD delete.
+DRY_RUN = "false"
+
+# Delete emails older than this many days.
+RETENTION_DAYS = "90"
+
+# Emergency caps. If above either cap, delete oldest first.
+MAX_EMAILS = "50000"
+MAX_R2_BYTES = "400000000"
+
+# Max emails to delete per run.
+BATCH_SIZE = "500"
+
+# Max repeated deletion passes in one cron run.
+MAX_PASSES = "20"
